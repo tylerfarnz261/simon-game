@@ -45,10 +45,12 @@ $(".btn").click(function () {
     var userChosenColour = $(this).attr("id");
     userClickedPattern.push(userChosenColour);
 
+    
     checkAnswer(userClickedPattern.length-1);
     animatePress(userChosenColour);
+    if (started==true){
     playSound(userChosenColour);
-    
+    }
 });
 
 function playSound(name){
@@ -70,9 +72,11 @@ function checkAnswer(currentLevel){
             setTimeout(nextSequence,1000);
         }
     }else{
-        console.log("incorrect answer");
+        playSound("wrong");
         gameEnd();
+        return false;
     }
+    return true;
 
 }
 
